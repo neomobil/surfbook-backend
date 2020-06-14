@@ -16,12 +16,13 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('name')->index();
-            $table->string('image');
+            $table->string('image')->nullable();;
             $table->string('address');
             $table->string('postcode');
             $table->string('city');
             $table->string('country');
-            $table->point('geolocation')->spatialIndex();
+            $table->float('latitude', 8, 6);
+            $table->float('longitude', 9, 6);
             $table->timestamps();
             $table->softDeletes();
         });
