@@ -14,6 +14,9 @@ class MenuController extends Controller
         $this->menuRepository = $menuRepository;
     }
 
+    /**
+     * @return MenuResourceCollection
+     */
     public function index()
     {
         return new MenuResourceCollection($this->menuRepository->all());

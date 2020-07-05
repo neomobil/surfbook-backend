@@ -9,16 +9,23 @@ use Tests\TestCase;
 class MenusTest extends TestCase
 {
     private $basePath = 'api/menus';
+
     /**
-     * A basic feature test example.
+     * Test menus controller index method.
      *
      * @return void
+     * @throws \Throwable
      */
-    public function testExample()
+    public function testMenusIndexMethod(): void
     {
-        $response = $this->get($this->basePath);
-        dump($response->decodeResponseJson());
+        $response = $this->get(route('menus'));
+        $decoded = $response->decodeResponseJson();
 
+        $response->assertJsonStructure(
+            ['data' => [['id', 'name', 'slug', 'image']]]
+        );
         $response->assertStatus(200);
+        self::assertArrayHasKey('data', $decoded);
+        self::assertIsArray($decoded);
     }
 }

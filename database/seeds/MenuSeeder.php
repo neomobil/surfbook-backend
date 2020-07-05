@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -12,25 +13,18 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('menus')->insert([
-            'name' => 'activities',
-            'slug' => 'activities',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-        DB::table('menus')->insert([
-            'name' => 'locations',
-            'slug' => 'locations',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-        DB::table('menus')->insert([
-            'name' => 'organizations',
-            'slug' => 'organizations',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-        DB::table('menus')->insert([
-            'name' => 'users',
-            'slug' => 'users',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
+        $menus = [
+            'activities',
+            'locations',
+            'organizations',
+            'users',
+        ];
+        foreach ($menus as $menu) {
+            DB::table('menus')->insert([
+                'name' => $menu,
+                'slug' => $menu,
+                'created_at' => Carbon::now(),
+            ]);
+        }
     }
 }
