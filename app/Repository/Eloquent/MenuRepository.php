@@ -7,6 +7,7 @@ namespace App\Repository\Eloquent;
 use App\Models\Menu;
 use App\Repository\MenuRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 
 class MenuRepository extends BaseRepository implements MenuRepositoryInterface
@@ -22,24 +23,20 @@ class MenuRepository extends BaseRepository implements MenuRepositoryInterface
         parent::__construct($model);
     }
 
+    /**
+     * @return Collection
+     */
     public function all(): Collection
     {
-        return $this->model->all();
+        return $this->model::all();
     }
 
     /**
-     * @inheritDoc
+     * @return Paginator
      */
-    public function create(array $attributes): Model
+    public function paginate(): Paginator
     {
-        // TODO: Implement create() method.
+        return $this->model::paginate();
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function find($id): ?Model
-    {
-        // TODO: Implement find() method.
-    }
 }

@@ -28,15 +28,7 @@ class BaseRepository implements EloquentRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function create(array $attributes): Model
-    {
-        // TODO: Implement create() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function find($id): ?Model
+    public function getById($id): ?Model
     {
         // TODO: Implement find() method.
     }
