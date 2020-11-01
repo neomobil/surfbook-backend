@@ -13,7 +13,7 @@ class CreateActivitiesImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities_images', function (Blueprint $table) {
+        Schema::create('activity_images', function (Blueprint $table) {
             $table->id();
             $table->string('path');
             $table->string('name')->nullable();

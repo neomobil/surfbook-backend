@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
          $this->call(MenuSeeder::class);
          $this->call(LocationSeeder::class);
+         $this->call(ActivitySeeder::class);
     }
 }

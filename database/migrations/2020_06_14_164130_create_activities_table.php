@@ -29,6 +29,8 @@ class CreateActivitiesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('activities');
+        Schema::enableForeignKeyConstraints();
     }
 }
