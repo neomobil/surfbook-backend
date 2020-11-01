@@ -18,8 +18,7 @@ class LocationSeeder extends Seeder
             'city' => 'Balatonfűzfő',
             'country' => 'Hungary',
             'postcode' => '8175',
-            'latitude' => '47.051678',
-            'longitude' => '18.052275',
+            'geolocation' => DB::raw("PointFromText('POINT(47.051678 18.052275)')"),
             'created_at' => date('Y-m-d H:i:s')
         ]);
     }
