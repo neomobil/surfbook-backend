@@ -22,10 +22,20 @@ class CreateProjectsTable extends Migration
             $table->date('end_date')->nullable();
             $table->time('begin_time');
             $table->time('end_time')->nullable();
-            $table->unsignedBigInteger('project_statuses_id')->nullable();
+            $table->unsignedBigInteger('project_status_id')->nullable();
+            $table->unsignedBigInteger('activity_id')->nullable();
+            $table->unsignedBigInteger('location_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('project_statuses_id')
+            $table->foreign('activity_id')
+                ->on('activities')
+                ->references('id')
+                ->cascadeOnDelete();
+            $table->foreign('location_id')
+                ->on('locations')
+                ->references('id')
+                ->cascadeOnDelete();
+            $table->foreign('project_status_id')
                 ->on('project_statuses')
                 ->references('id')
                 ->cascadeOnDelete();
