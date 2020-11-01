@@ -1,0 +1,126 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "Surfbook RestApi"
+  contact:
+    email: "tkornel@neomobil.hu"
+  license:
+    name: "MIT"
+    url: "https://opensource.org/licenses/MIT"
+host: "surfbook.test"
+basePath: "/api/v1"
+tags:
+  - name: "Activity"
+    description: "Available actions for activities"
+  - name: "Menu"
+    description: "Available menus"
+  - name: "User"
+    description: "Current user"
+schemes:
+  - "https"
+paths:
+  /activities:
+    get:
+      tags:
+        - "Activity"
+      summary: "Get all activities"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Activity"
+        "400":
+          description: "Not found"
+  /activities/{id}:
+    get:
+      tags:
+        - "Activity"
+      summary: "Get activity by ID"
+      description: "Returns a single activity"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of activity to return"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Activity"
+        "404":
+          description: "Activity not found"
+  /menus:
+    get:
+      tags:
+        - "Menu"
+      summary: "Get menus"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Menu"
+        "404":
+          description: "Activity not found"
+
+definitions:
+  Activity:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      main_image:
+        type: "string"
+      title:
+        type: "string"
+        example: "Kitesurfing"
+      description:
+        type: "string"
+      images:
+        type: array
+        items:
+          $ref: '#/definitions/ActivityImage'
+  ActivityImage:
+    type: "object"
+    properties:
+      id:
+        type: integer
+        format: int64
+      path:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      activity_id:
+        type: integer
+        format: int64
+  Menu:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+        example:
+          'locations'
+      slug:
+        type: string
+        example:
+          'locations'
+      image:
+        type: string
+        example:
+          'https://url.io/path'
