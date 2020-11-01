@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('menus', 'MenuController@index');
+Route::get('menus', 'MenuController@index')->name('menus');
 Route::get('activities', 'ActivityController@index');
 Route::get('organizations', 'OrganiztaionController@index');
 Route::get('locations', 'LocationController@index');
