@@ -35,7 +35,7 @@ class CreateActivitiesImagesTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('activities_images');
+        Schema::dropIfExists('activity_images');
         Schema::enableForeignKeyConstraints();
     }
 }
