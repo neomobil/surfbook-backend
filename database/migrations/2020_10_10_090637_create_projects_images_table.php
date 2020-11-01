@@ -18,7 +18,12 @@ class CreateProjectsImagesTable extends Migration
             $table->string('path');
             $table->string('name')->nullable();
             $table->mediumText('description')->nullable();
+            $table->bigInteger('project_id', false, true)->nullable();
             $table->timestamps();
+            $table->foreign('project_id')
+                ->references('id')
+                ->on('projects')
+                ->cascadeOnDelete();
         });
     }
 
