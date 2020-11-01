@@ -18,7 +18,12 @@ class CreateActivitiesImagesTable extends Migration
             $table->string('path');
             $table->string('name')->nullable();
             $table->mediumText('description')->nullable();
+            $table->bigInteger('activity_id')->unsigned();
             $table->timestamps();
+            $table->foreign('activity_id')
+                ->references('id')
+                ->on('activities')
+                ->cascadeOnDelete();
         });
     }
 
@@ -29,6 +34,8 @@ class CreateActivitiesImagesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('activities_images');
+        Schema::enableForeignKeyConstraints();
     }
 }
