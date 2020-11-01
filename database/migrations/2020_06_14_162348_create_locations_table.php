@@ -21,8 +21,7 @@ class CreateLocationsTable extends Migration
             $table->string('postcode');
             $table->string('city');
             $table->string('country');
-            $table->float('latitude', 8, 6);
-            $table->float('longitude', 9, 6);
+            $table->point('geolocation')->spatialIndex();
             $table->timestamps();
             $table->softDeletes();
         });
